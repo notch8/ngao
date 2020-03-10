@@ -16,10 +16,16 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
-log/development.log
 
-# Ignore Byebug command history file.
+# Ignore uploaded files in development
+/storage/*
+!/storage/.keep
+
+/node_modules
+/yarn-error.log
+
+/public/assets
 .byebug_history
 
-node_modules
-
+# Ignore master key for decrypting credentials and more.
+/config/master.key
