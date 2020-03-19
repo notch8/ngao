@@ -34,3 +34,4 @@
 /.vscode
 .idea
 .generators
+log/development.log
