@@ -226,6 +226,10 @@
   clear: left;
 }
 
+#footer .row {
+  justify-content: center;
+}
+
 #footer .tagline {
   font-family: BentonSansCondBold, Arial, serif;
   font-weight: normal;
