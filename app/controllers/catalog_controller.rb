@@ -49,19 +49,22 @@ class CatalogController < ApplicationController
     config.show.display_type_field = 'level_ssm'
     # config.show.thumbnail_field = 'thumbnail_path_ss'
 
-    config.add_results_document_tool(:bookmark, partial: 'bookmark_control', if: :render_bookmarks_control?)
+    ##### REMOVE BOOKMARKS #####
+    # config.add_results_document_tool(:bookmark, partial: 'bookmark_control', if: :render_bookmarks_control?)
 
     config.add_results_collection_tool(:sort_widget)
     config.add_results_collection_tool(:per_page_widget)
     config.add_results_collection_tool(:view_type_group)
 
-    config.add_show_tools_partial(:bookmark, partial: 'bookmark_control', if: :render_bookmarks_control?)
+    ##### REMOVE BOOKMARK #####
+    # config.add_show_tools_partial(:bookmark, partial: 'bookmark_control', if: :render_bookmarks_control?)
     config.add_show_tools_partial(:email, callback: :email_action, validator: :validate_email_params)
     config.add_show_tools_partial(:sms, if: :render_sms_action?, callback: :sms_action, validator: :validate_sms_params)
     config.add_show_tools_partial(:citation)
 
-    config.add_nav_action(:bookmark, partial: 'blacklight/nav/bookmark', if: :render_bookmarks_control?)
-    config.add_nav_action(:search_history, partial: 'blacklight/nav/search_history')
+    ##### REMOVE BOOKMARK AND HISTORY FROM NAVBAR #####
+    # config.add_nav_action(:bookmark, partial: 'blacklight/nav/bookmark', if: :render_bookmarks_control?)
+    # config.add_nav_action(:search_history, partial: 'blacklight/nav/search_history')
 
     # solr fields that will be treated as facets by the blacklight application
     #   The ordering of the field names is the order of the display
@@ -97,7 +100,7 @@ class CatalogController < ApplicationController
     config.add_facet_field 'geogname_sim', label: 'Place', limit: 10
     config.add_facet_field 'places_ssim', label: 'Places', show: false
     config.add_facet_field 'access_subjects_ssim', label: 'Subject', limit: 10
-
+    config.add_facet_field 'campus_unit_sim', label: 'Campus', helper_method: :render_campus_facet
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request
     # handler defaults, or have no facets.
@@ -107,6 +110,7 @@ class CatalogController < ApplicationController
     #   The ordering of the field names is the order of the display
     config.add_index_field 'unitid_ssm', label: 'Unit ID'
     config.add_index_field 'repository_ssm', label: 'Repository'
+    config.add_index_field 'campus_unit_ssm', label: 'Campus', helper_method: :render_campus_name
     config.add_index_field 'normalized_date_ssm', label: 'Date'
     config.add_index_field 'creator_ssm', label: 'Creator'
     config.add_index_field 'language_ssm', label: 'Language'
@@ -219,8 +223,9 @@ class CatalogController < ApplicationController
     # Configuration for index actions
     config.index.document_actions << :containers
     config.index.document_actions << :online_content_label
-    config.add_results_document_tool :arclight_bookmark_control, partial: 'arclight_bookmark_control'
-    config.index.document_actions.delete(:bookmark)
+    ##### REMOVE BOOKMARKS #####
+    # config.add_results_document_tool :arclight_bookmark_control, partial: 'arclight_bookmark_control'
+    # config.index.document_actions.delete(:bookmark)
 
     config.show.metadata_partials = %i[
       summary_field
@@ -357,6 +362,7 @@ class CatalogController < ApplicationController
     config.add_component_terms_field 'parent_access_terms_ssm', label: 'Parent Terms of Access', helper_method: :render_html_tags
 
     # Collection and Component Show Page Access Tab - In Person Section
+    config.add_in_person_field 'campus_unit_ssm', label: 'Campus', helper_method: :render_campus_name
     config.add_in_person_field 'repository_ssm', if: :repository_config_present, label: 'Location of this collection', helper_method: :context_access_tab_repository
     config.add_in_person_field 'id', if: :before_you_visit_note_present, label: 'Before you visit', helper_method: :context_access_tab_visit_note # Using ID because we know it will always exist
 
@@ -364,6 +370,7 @@ class CatalogController < ApplicationController
     config.add_cite_field 'prefercite_ssm', label: 'Preferred citation', helper_method: :render_html_tags
 
     # Collection and Component Show Page Access Tab - Contact Section
+    config.add_contact_field 'campus_unit_ssm', label: 'Campus', helper_method: :render_campus_name
     config.add_contact_field 'repository_ssm', if: :repository_config_present, label: 'Contact', helper_method: :access_repository_contact
 
     # Remove unused show document actions
