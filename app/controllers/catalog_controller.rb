@@ -97,7 +97,7 @@ class CatalogController < ApplicationController
     config.add_facet_field 'geogname_sim', label: 'Place', limit: 10
     config.add_facet_field 'places_ssim', label: 'Places', show: false
     config.add_facet_field 'access_subjects_ssim', label: 'Subject', limit: 10
-
+    config.add_facet_field 'campus_unit_sim', label: 'Campus', helper_method: :render_campus_facet
     # Have BL send all facet field names to Solr, which has been the default
     # previously. Simply remove these lines if you'd rather use Solr request
     # handler defaults, or have no facets.
@@ -107,6 +107,7 @@ class CatalogController < ApplicationController
     #   The ordering of the field names is the order of the display
     config.add_index_field 'unitid_ssm', label: 'Unit ID'
     config.add_index_field 'repository_ssm', label: 'Repository'
+    config.add_index_field 'campus_unit_ssm', label: 'Campus', helper_method: :render_campus_name
     config.add_index_field 'normalized_date_ssm', label: 'Date'
     config.add_index_field 'creator_ssm', label: 'Creator'
     config.add_index_field 'language_ssm', label: 'Language'
@@ -357,6 +358,7 @@ class CatalogController < ApplicationController
     config.add_component_terms_field 'parent_access_terms_ssm', label: 'Parent Terms of Access', helper_method: :render_html_tags
 
     # Collection and Component Show Page Access Tab - In Person Section
+    config.add_in_person_field 'campus_unit_ssm', label: 'Campus', helper_method: :render_campus_name
     config.add_in_person_field 'repository_ssm', if: :repository_config_present, label: 'Location of this collection', helper_method: :context_access_tab_repository
     config.add_in_person_field 'id', if: :before_you_visit_note_present, label: 'Before you visit', helper_method: :context_access_tab_visit_note # Using ID because we know it will always exist
 
@@ -364,6 +366,7 @@ class CatalogController < ApplicationController
     config.add_cite_field 'prefercite_ssm', label: 'Preferred citation', helper_method: :render_html_tags
 
     # Collection and Component Show Page Access Tab - Contact Section
+    config.add_contact_field 'campus_unit_ssm', label: 'Campus', helper_method: :render_campus_name
     config.add_contact_field 'repository_ssm', if: :repository_config_present, label: 'Contact', helper_method: :access_repository_contact
 
     # Remove unused show document actions
