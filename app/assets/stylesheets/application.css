@@ -12,9 +12,14 @@
  *
  *= require_tree .
  *= require_self
- 
+
  *
  * Used by blacklight_range_limit
  *= require  'blacklight_range_limit'
  *
 */
+.uv {
+  width:560px;
+  height:420px;
+  background-color: #000;
+}
