@@ -8,8 +8,8 @@
     <li class="media breadcrumb-item breadcrumb-item-1">
       <%# TODO: Convert to link when Campus Page route is created %>
       <% if document.campus.present? %>
-        <span class="media-body" aria-hidden="true"><%= blacklight_icon :campus, classes: 'al-repository-content-icon' %></span>
-        <span class="col"><%= convert_campus_id(document.campus) %></span>
+        <span class="media-body" aria-hidden="true"><%= blacklight_icon :campus, classes: 'al-campus-content-icon' %></span>
+        <span class="col"><%= add_campus_link(document) %></span>
       <% else %>
         <span class="col">Campus</span>
       <% end %>

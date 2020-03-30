@@ -338,6 +338,8 @@ module ArclightHelper
 
     # TODO - convert to link when campus route is added
     def add_campus_link(document)
-      content_tag(:span, convert_campus_id(document.campus))
+      campus_name = content_tag(:span, convert_campus_id(document.campus))
+      search_query = "/?f[campus_unit_sim][]=#{document.campus}&q=&search_field=all_fields"
+      link_to(campus_name, search_query)
     end
 end
