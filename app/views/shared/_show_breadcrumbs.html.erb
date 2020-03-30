@@ -8,6 +8,7 @@
     <li class="media breadcrumb-item breadcrumb-item-1">
       <%# TODO: Convert to link when Campus Page route is created %>
       <% if document.campus.present? %>
+        <span class="media-body" aria-hidden="true"><%= blacklight_icon :campus, classes: 'al-repository-content-icon' %></span>
         <span class="col"><%= convert_campus_id(document.campus) %></span>
       <% else %>
         <span class="col">Campus</span>
@@ -25,7 +26,7 @@
       <%= content_tag :li, class: "breadcrumb-item breadcrumb-item-#{index + 3} media" do %>
         <span class="media-body" aria-hidden="true"><%= blacklight_icon document_or_parent_icon(parent) %></span>
         <span class="col"><%= link_to parent.label, solr_document_path(parent.global_id) %></span>
-      <% end %> 
+      <% end %>
     <% end %>
   </ol>
 
