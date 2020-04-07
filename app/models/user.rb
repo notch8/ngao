@@ -3,7 +3,7 @@ class User < ApplicationRecord
   include Blacklight::User
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable,
+  devise :invitable, :database_authenticatable,
          :recoverable, :rememberable, :validatable
 
   enum role: { manager: 0, admin: 1 }
