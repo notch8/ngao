@@ -77,16 +77,21 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'arclight', github: 'sul-dlss/arclight'
 gem 'blacklight_range_limit', '~> 7.1'
 group :development, :test do
-  gem 'solr_wrapper', '>= 0.3'
   gem 'nulldb'
+  gem 'solr_wrapper', '>= 0.3'
 end
 
-gem 'rsolr', '>= 1.0', '< 3'
+gem 'blacklight-locale_picker'
 gem 'bootstrap', '~> 4.0'
-gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
 gem 'jquery-rails'
+gem 'mysql2'
+gem 'rsolr', '>= 1.0', '< 3'
+gem 'twitter-typeahead-rails', '0.11.1.pre.corejavascript'
+
+gem 'cancancan'
 gem 'devise'
 gem 'devise-guests', '~> 0.6'
 gem 'devise_invitable', '~> 2.0.0'
-gem 'blacklight-locale_picker'
-gem 'mysql2'
+
+gem 'rails_admin'
+gem 'rails_admin_invite', github: 'notch8/rails_admin_invite'
