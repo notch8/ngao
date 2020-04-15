@@ -5,14 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.where(email: 'jlhardes@iu.edu').first_or_create do |u|
-  u.password = 'testing123'
-end
-
-User.where(email: 'rdfloyd@iu.edu').first_or_create do |u|
-  u.password = 'testing123'
-end
-
-User.where(email: 'acrande@iu.edu').first_or_create do |u|
-  u.password = 'testing123'
+%w[jlhardes@iu.edu rdfloyd@iu.edu acrande@iu.edu].each do |email|
+  user = User.where(email: email).first_or_create do |u|
+    u.password = 'testing123'
+    u.role = 'admin'
+  end
 end
