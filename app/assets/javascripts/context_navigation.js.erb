@@ -100,7 +100,7 @@ class Placeholder {
   buildElement() {
     // CHANGED PLACEHOLDER ELEMENT
     const elementMarkup = '<div class="al-hierarchy-placeholder">' +
-      '<h3 class="col-md-9"> <img alt="loading icon" src="/assets/ajax-loader.gif"> Loading...</h3>' +
+      '<h3 class="col-md-9"> <img alt="loading icon" src="<%= image_path('ajax-loader.gif') %>"> Loading...</h3>' +
       '</div>';
     return $(elementMarkup);
   }
