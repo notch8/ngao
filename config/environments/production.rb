@@ -89,6 +89,23 @@ Rails.application.configure do
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
   end
 
+  # config.action_mailer.perform_caching = true
+  config.action_mailer.smtp_settings = {
+    :address => ENV['SMTP_ADDRESS'],
+    :port => ENV['SMTP_PORT'],
+    :user_name => ENV["SMTP_USERNAME"], #Your SMTP user
+    :password => ENV["SMTP_PASSWORD"], #Your SMTP password
+    :authentication => :login,
+    :enable_starttls_auto => true
+  }
+
+  # Ignore bad email addresses and do not raise email delivery errors.
+  # Set this to true and configure the email server for immediate delivery to raise delivery errors.
+  # config.action_mailer.raise_delivery_errors = false
+  #
+  config.action_mailer.default_url_options = { protocol: 'https', host: ENV['SITE_URL'] }
+
+
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end
