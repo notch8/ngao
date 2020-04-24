@@ -2,32 +2,32 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "app.delayed-job.name" . }}
+  name: {{ template "app.delayed_job.name" . }}
   labels:
     app: {{ template "app.name" . }}
     chart: {{ template "app.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
-    component: delayed-job
+    component: delayed_job
 spec:
-  replicas: {{ .Values.delayed-job.replicas }}
+  replicas: {{ .Values.delayed_job.replicas }}
   selector:
     matchLabels:
       app: {{ template "app.name" . }}
       release: {{ .Release.Name }}
-      component: delayed-job
+      component: delayed_job
   template:
     metadata:
       labels:
         app: {{ template "app.name" . }}
         release: {{ .Release.Name }}
-        component: delayed-job
+        component: delayed_job
       annotations:
         checksum/rails-env-cm: {{ include (print $.Template.BasePath "/rails-env-cm.yaml") . | sha256sum }}
         checksum/rails-env-secret: {{ include (print $.Template.BasePath "/rails-env-secret.yaml") . | sha256sum }}
     spec:
       restartPolicy: Always
-      terminationGracePeriodSeconds: {{ .Values.delayed-job.timeout | add 5 }}
+      terminationGracePeriodSeconds: {{ .Values.delayed_job.timeout | add 5 }}
       {{- if .Values.rails.imagePullSecrets }}
       imagePullSecrets:
         {{ toYaml .Values.rails.imagePullSecrets }}
@@ -59,9 +59,9 @@ spec:
                       operator: In
                       values:
                         - web
-                        - delayed-job
+                        - delayed_job
       containers:
-        - name: delayed-job
+        - name: delayed_job
           image: {{ .Values.rails.image.repository }}:{{ .Values.rails.image.tag }}
           imagePullPolicy: Always
           command: ["/bin/bash"]
@@ -72,7 +72,7 @@ spec:
           # livenessProbe:
           #   exec:
           #     command:
-          #       - ./bin/rails runner ./chart/bin/check_delayed-job.rb
+          #       - ./bin/rails runner ./chart/bin/check_delayed_job.rb
           #   initialDelaySeconds: 30
           # Use sub-path for individual folders
           volumeMounts:
