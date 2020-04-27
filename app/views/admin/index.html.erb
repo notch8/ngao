@@ -1,17 +1,17 @@
 <div class="container">
-  
+
   <h3>Manage Repositories</h3>
   <% if current_user.admin? %>
     <div class="row col">
       <%= link_to "Index all EADs for all repositories", index_eads_url, remote: true, class: "btn btn-lg btn-primary mt-4 mb-4" %>
     </div>
   <% end %>
-  
+
   <div class="row mb-1">
     <div class="col-md-9">
       <h4>Repositories</h4>
     </div>
-    
+
   </div>
   <% @repositories.each do |key, value| %>
     <div class="row mt-2 pt-4 border-top">
@@ -39,6 +39,13 @@
           <% end %>
         </table>
       </div>
+    </div>
+  <% end %>
+
+  <% if current_user.admin?%>
+    <h3>Manage Users</h3>
+    <div class="row col">
+      <%= link_to "Invite a new user", new_user_invitation_path, class: "btn btn-lg btn-primary mt-4 mb-4"%>
     </div>
   <% end %>
 
