@@ -36,9 +36,33 @@ RSpec.describe EadProcessor do
     )
   end
 
+  it 'gets the list of eads' do
+    file = "#{Rails.root}/spec/fixtures/html/test.zip"
+    eads = EadProcessor.get_ead_names(file, 'mix')
+    expect(eads).to include('VAD3254.xml')
+  end
+
   it 'checks to see if it should process files' do
     args = { url: "#{Rails.root}/spec/fixtures/html/test.html", files: ['Test file'] }
     expect(EadProcessor.should_process_file(args, 'Test file')).to be true
     expect(EadProcessor.should_process_file(args, 'Not a test file')).to be false
+  end
+
+  it 'adds the repository to the db' do
+    repo_id = 'test'
+    repo_name = "Working Men's Institute of New Harmony, Indiana"
+    repo_last_updated_at = DateTime.parse('(last updated: 2020-04-24 06:01:53)') 
+    new_repository = EadProcessor.add_repository_to_db(repo_id, repo_name, repo_last_updated_at)
+    expect(new_repository.repository_id).to eq(repo_id)
+    expect(new_repository.name).to eq(repo_name)
+    expect(new_repository.last_updated_at).to eq(repo_last_updated_at)
+  end
+
+  it 'adds the ead to the db' do
+    repository = Repository.new(repository_id: 'mix')
+    ead_filename = 'VAD3254.xml'
+    new_ead = EadProcessor.add_ead_to_db(ead_filename, repository.repository_id)
+    expect(new_ead.filename).to eq(ead_filename)
+    expect(new_ead.repository)
   end
 end

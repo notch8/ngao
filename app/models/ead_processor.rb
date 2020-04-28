@@ -99,10 +99,12 @@ class EadProcessor
       next unless ext == '.zip'
       value = { name: repository.children.text }
       repositories[key] = value
+      last_updated_at = DateTime.parse(repository.next_sibling.text)
+      add_repository_to_db(key, value[:name], last_updated_at)
       eads = []
       if ext == '.zip'
         open(link, 'rb') do |file|
-          eads = get_ead_names(file)
+          eads = get_ead_names(file, key)
         end
       end
       repositories[key][:eads] = eads
@@ -110,15 +112,31 @@ class EadProcessor
     return repositories
   end
 
+  def self.add_repository_to_db(id, name, last_updated_at)
+    Repository.where(repository_id: id).first_or_create do |repo|
+      repo.name = name
+      repo.last_updated_at = last_updated_at
+    end
+  end
+
   # get list of eads contained in zip file
-  def self.get_ead_names(file)
+  def self.get_ead_names(file, repository)
     eads = []
     Zip::File.open(file) do |zip_file|
       zip_file.each do |entry|
-        eads << entry.name if entry.file?
+        if entry.file?
+          eads << entry.name
+          add_ead_to_db(entry.name, repository)
+        end
       end
     end
     return eads
+  end
+
+  def self.add_ead_to_db(filename, repository_id)
+    Ead.where(filename: filename).first_or_create do |ead|
+      ead.repository = Repository.find_by(repository_id: repository_id)
+    end
   end
 
   # check if should process file
