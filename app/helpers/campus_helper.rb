@@ -3,7 +3,7 @@ module CampusHelper
   include ActiveSupport::Concern
 
   CAMPUSES = {
-    "US-InU" => "Indiana University, Bloomington",
+    "US-InU" => "Indiana University Bloomington",
     "US-InU-Sb" => "Indiana University South Bend",
     "US-InU-Se" => "Indiana University Southeast",
     "US-inrmiue" => "Indiana University East",
