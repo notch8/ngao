@@ -4,18 +4,11 @@
   width: 100%;
   margin: 0 auto;
   background-color: $iu-mahogany;
-  .row {
+  .ngao-links {
     margin: 0 auto;
     position: relative;
     max-width: 64rem;
     justify-content: space-between;
-  }
-}
-
-#static-pages {
-  ul {
-    display: flex;
-    flex-direction: row;
   }
 }
 
