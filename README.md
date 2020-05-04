@@ -88,6 +88,13 @@ The indexing for this application is performed as a background process using Del
 Make sure to run `rake jobs:work` to start the background processing.
 More information about running the jobs in production can be found here: https://github.com/collectiveidea/delayed_job#running-jobs
 
+## Cron Job
+There is a cron job that is scheduled to run every 24 hours which runs the indexer. This is managed with the Whenever gem. You will need to run this command in a deploy script or on the server to start the job.
+
+`bundle exec whenever --update-crontab` 
+
+Information on the Whenever gem can be found at [https://github.com/javan/whenever](https://github.com/javan/whenever)
+
 ## Customizing the devise views
 
 This uses the [Devise Bootstrap Views](https://github.com/hisea/devise-bootstrap-views) gem to style the user authentication pages.
