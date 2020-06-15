@@ -20,6 +20,11 @@
                     </div>
                   <% end %>
                 <% end %>
+                <% if repository.repo_inst_url.present? %>
+                  <div class='al-repository-contact-info-repo_inst_url'>
+                    <%= link_to repository.repo_inst_url, repository.repo_inst_url %>
+                  </div>
+                <% end %>
              </div>
 
               <div class="al-repository-contact-info">
