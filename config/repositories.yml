@@ -12,7 +12,8 @@ mix:
   country: 'USA'
   phone: ''
   contact_info: 'hmdref@nlm.nih.gov'
-  thumbnail_url: "https://collections.nlm.nih.gov/pageturnerserver/ajaxp?theurl=http://localhost:8080/fedora/get/nlm:nlmuid-101421040-img/THUMB"
+  thumbnail_url: 'http://webapp1.dlib.indiana.edu/archivesOnline/repositoryImages/southeast.jpg'
+  repo_inst_url: 'https://library.iusb.edu/search-find/archives/index.html'
 lilly:
   campus: 'US-InU'
   name: 'Lilly Library'
@@ -28,6 +29,7 @@ lilly:
   phone: '(812) 855-2452'
   contact_info: 'liblilly@indiana.edu'
   thumbnail_url: 'https://libraries.indiana.edu/sites/default/files/iu_feature/Lilly%20Library.exteror.web_.jpg'
+  repo_inst_url: 'https://libraries.indiana.edu/lilly-library'
   request_types:
     aeon_web_ead:
       request_url: 'https://sample.request.com'
@@ -46,7 +48,8 @@ wyliehouse:
   country: 'United States'
   phone: '812-855-6224'
   contact_info: 'libwylie@indiana.edu'
-  thumbnail_url: "https://libraries.indiana.edu/sites/default/files/styles/iu_one_third_standard/public/wylie-house-spring.jpg"
+  thumbnail_url: 'https://libraries.indiana.edu/sites/default/files/styles/iu_one_third_standard/public/wylie-house-spring.jpg'
+  repo_inst_url: 'https://libraries.indiana.edu/wylie-house-museum'
 wmi:
   campus: 'US-InU'
   name: 'Working Men’s Institute'
@@ -61,7 +64,8 @@ wmi:
   country: 'United States'
   phone: ''
   contact_info: 'archivist@workingmensinstitute.org'
-  thumbnail_url: "https://workingmensinstitute.org/wp-content/uploads/2018/03/museum-lg.png"
+  thumbnail_url: 'https://workingmensinstitute.org/wp-content/uploads/2018/03/museum-lg.png'
+  repo_inst_url: 'http://www.workingmensinstitute.org/'
 archives:
   campus: 'US-InU'
   name: 'University Archives'
@@ -76,5 +80,6 @@ archives:
   country: 'United States'
   phone: '812-855-1127'
   contact_info: 'archives@indiana.edu'
-  thumbnail_url: "https://libraries.indiana.edu/sites/default/files/styles/iu_one_third_standard/public/LARGE_archives.jpg?itok=yM3aAt4l"
+  thumbnail_url: 'https://libraries.indiana.edu/sites/default/files/styles/iu_one_third_standard/public/LARGE_archives.jpg?itok=yM3aAt4l'
+  repo_inst_url: 'http://www.libraries.iub.edu/archives'
   
