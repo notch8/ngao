@@ -42,3 +42,8 @@ log/*
 
 #ignore coverage report
 /coverage/*
+
+# ignore data managed by import processes
+/data/*
+!/data/.keep
+
