@@ -54,3 +54,11 @@ Rails.application.routes.draw do
   get '/about', to: 'pages#about', as: 'about'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
+
+get '/contribute', to: 'pages#contribute', as: 'contribute'
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+end
+
+get '/help', to: 'pages#help', as: 'help'
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+end
