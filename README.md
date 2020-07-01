@@ -121,3 +121,5 @@ To add new static pages:
   get '/new_page', to: 'pages#new_page', as: 'new_page'
 4. add link to 'app/views/shared/_static_pages_links'
   <li class="nav-item ml-3"> <% link_to 'new_page', new_page_path, class: 'nav-link' %></li>
+5. add page header title to config/locales/arclight.en.yml under views:
+  new_page: title: new_page title
