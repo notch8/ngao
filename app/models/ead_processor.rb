@@ -55,13 +55,13 @@ class EadProcessor
   def self.index_single_ead(args = {})
     repository = args[:repository]
     file_name = args[:ead]
-    link = client(args) + "#{repository}.zip"
+    link = client(args) + "#{repository}/#{file_name}"
     directory = repository.parameterize.underscore
-    open(link, 'rb') do |file|
-      extract_file(file, directory)
-    end
     path = "./data/#{directory}"
+    Dir.mkdir(path) unless Dir.exist?(path)
+    download = open(link, 'rb')
     fpath = File.join(path, file_name)
+    IO.copy_stream(download, fpath)
     filename = File.basename(fpath)
     add_last_indexed(filename, DateTime.now)
     EadProcessor.delay.index_file(fpath, repository)
