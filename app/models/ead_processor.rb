@@ -7,6 +7,10 @@ class EadProcessor
     process_files(args)
   end
 
+  def self.import_updated_eads(args = {})
+    process_updated_files(args)
+  end
+
   # sets the url
   def self.client(args = {})
     args[:url] || ENV['ASPACE_EXPORT_URL'] || 'http://localhost/assets/ead_export/'
@@ -34,6 +38,19 @@ class EadProcessor
     end
   end
 
+  def self.process_updated_files(args={})
+    for file_link in page(args).css('a')
+      file_name = file_link.attributes['href'].value
+      file_name.slice! client(args)
+      repository = File.dirname(file_name)
+      file = File.basename(file_name)
+      ext = File.extname(file_name)
+      next unless ext == '.xml'
+      args = { ead: file, repository: repository }
+      EadProcessor.index_single_ead(args)
+    end
+  end
+
   # unzip the file and call index
   def self.extract_and_index(file, directory)
     Zip::File.open(file) do |zip_file|
@@ -53,12 +70,14 @@ class EadProcessor
   # for indexing a single ead file
   # need to unzip parent and index only the file selected
   def self.index_single_ead(args = {})
+    puts args
     repository = args[:repository]
     file_name = args[:ead]
     link = client(args) + "#{repository}/#{file_name}"
     directory = repository.parameterize.underscore
     path = "./data/#{directory}"
     Dir.mkdir(path) unless Dir.exist?(path)
+    puts link
     download = open(link, 'rb')
     fpath = File.join(path, file_name)
     IO.copy_stream(download, fpath)
