@@ -62,7 +62,7 @@ class EadProcessor
         filename = File.basename(fpath)
         zip_file.extract(f, fpath)
         add_last_indexed(filename, DateTime.now)
-        index_file(fpath, directory)
+        EadProcessor.delay.index_file(fpath, directory)
       end
     end
   end
