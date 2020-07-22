@@ -289,7 +289,7 @@
       <str name="indexPath">suggester_infix_dir</str>
       <str name="highlight">false</str>
       <str name="suggestAnalyzerFieldType">text</str>
-      <str name="buildOnCommit">true</str>
+      <str name="buildOnOptimize">true</str>
       <str name="field">suggest</str>
     </lst>
   </searchComponent>
