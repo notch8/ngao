@@ -30,14 +30,6 @@ Rails.application.routes.draw do
     concerns :exportable
   end
 
-  resources :bookmarks do
-    concerns :exportable
-
-    collection do
-      delete 'clear'
-    end
-  end
-
   get '/admin', to: 'admin#index', as: 'admin'
   get 'admin/index_eads', to: 'admin#index_eads', as: 'index_eads'
   get 'admin/index_repository', to: 'admin#index_repository', as: 'index_repository'
