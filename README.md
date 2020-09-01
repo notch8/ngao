@@ -6,9 +6,10 @@ To setup the server:
 
 ```
 bundle install
+bundle exec rake db:migrate
 ```
 
-Then, to run the server:
+Then, in a separate console, run the Rails and Solr servers:
 
 ```
 bundle exec rake demo:server  # runs both Rails and Solr
@@ -20,7 +21,7 @@ Sample files are included in the data directory. To index sample data:
 ```
 REPOSITORY_ID=paleontology DIR=./data/paleontology rake arclight:index_dir
 ```
-
+Open a browser and verify the application and indexed EAD files at http://localhost:3000/collections
 
 ## Updating the application
 
