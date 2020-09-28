@@ -1,3 +1,4 @@
+# COPIED FROM ARCLIGHT GITHUB TO REMOVE DATE RANGE LIMITATION
 # frozen_string_literal: true
 
 module Arclight
@@ -45,7 +46,7 @@ module Arclight
 
       start_year, end_year = dates.split('/').map { |date| to_year_from_iso8601(date) }
       return [start_year] if end_year.blank?
-      raise ArgumentError, "Range is too large: #{dates}" if (end_year - start_year) > 1000
+      # raise ArgumentError, "Range is too large: #{dates}" if (end_year - start_year) > 1000
       raise ArgumentError, "Range is inverted: #{dates}" unless start_year <= end_year
 
       (start_year..end_year).to_a
