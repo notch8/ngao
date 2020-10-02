@@ -1,18 +1,58 @@
-FROM registry.gitlab.com/notch8/ngao/base:latest
+# system dependency image
+FROM ruby:2.7-buster AS ngao-sys-deps
 
-ADD https://time.is/just build-time
-COPY ops/nginx.sh /etc/service/nginx/run
-COPY ops/webapp.conf /etc/nginx/sites-enabled/webapp.conf
-COPY ops/env.conf /etc/nginx/main.d/env.conf
+# TODO: setup app user inside the container instead of running the Rails processes as root
+ARG USER_ID=1000
+ARG GROUP_ID=1000
 
-# Added this because of permissions errors runsv nginx: fatal: unable to start ./run: access denied
-RUN chmod +x /etc/service/nginx/run
+RUN groupadd -g ${GROUP_ID} app_archives && \
+    useradd -m -l -g app_archives -u ${USER_ID} app_archives && \
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+    curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
+    apt-get update -qq && \
+    apt-get install -y build-essential nodejs yarn
+RUN yarn && \
+    yarn config set no-progress && \     
+    yarn config set silent
 
-COPY  --chown=app . $APP_HOME
+###
+# ruby dependencies image
+FROM ngao-sys-deps AS ngao-deps
 
-RUN /sbin/setuser app bash -l -c "set -x && \
-    (bundle check || bundle install) && \
-    bundle exec rake assets:precompile DB_ADAPTER=nulldb && \
-    mv ./public/assets ./public/assets-new"
+RUN mkdir /app && chown app_archives:app_archives /app
+WORKDIR /app
 
-CMD ["/sbin/my_init"]
+RUN mkdir /container-data && chown app_archives:app_archives /container-data
+VOLUME /container-data
+
+# throw errors if Gemfile has been modified since Gemfile.lock
+RUN bundle config --global frozen 1
+
+COPY --chown=app_archives:app_archives Gemfile Gemfile.lock ./
+RUN gem update bundler && \
+    bundle install -j 2 --retry=3 --deployment --without development
+
+COPY --chown=app_archives:app_archives . .
+
+ENV RAILS_LOG_TO_STDOUT true
+ENV RAILS_ENV production
+
+ENTRYPOINT ["bundle", "exec"]
+
+###
+# Queue processing image
+#FROM ngao-deps as ngao-delayed-job
+#ARG SOURCE_COMMIT
+#ENV SOURCE_COMMIT $SOURCE_COMMIT
+#CMD ./bin/delayed_job
+
+###
+# webserver image
+FROM ngao-deps as ngao-web
+RUN bundle exec rake assets:precompile
+RUN mkdir /app/tmp/pids 
+EXPOSE 3000
+ARG SOURCE_COMMIT
+ENV SOURCE_COMMIT $SOURCE_COMMIT
+CMD puma -b tcp://0.0.0.0:3000
