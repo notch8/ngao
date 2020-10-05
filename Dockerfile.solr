@@ -1,0 +1,9 @@
+FROM solr:8
+USER root
+RUN mkdir -p /var/solr/data/configsets/myconfig
+WORKDIR /var/solr/data/configsets/myconfig
+COPY ./arclight_solr_conf .
+WORKDIR /
+RUN ls -ld /var/solr/data/configsets/myconfig
+USER solr
+EXPOSE 8983/tcp

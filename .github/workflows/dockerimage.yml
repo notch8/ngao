@@ -1,0 +1,24 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build and push to Docker Hub
+      uses: elgohr/Publish-Docker-Github-Action@master
+      with:
+        name: iublibtech/archives_online
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+        password: ${{ secrets.DOCKER_HUB_AUTH_TOKEN }}
+        buildargs: SOURCE_COMMIT
+        tags: "latest,master"
+      env: 
+        SOURCE_COMMIT: ${{ github.sha }}
