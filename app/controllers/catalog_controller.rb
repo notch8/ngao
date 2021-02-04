@@ -190,6 +190,13 @@ class CatalogController < ApplicationController
         pf:  '${pf_title}'
       }
     end
+    config.add_search_field 'unitid', label: 'Unit ID' do |field|
+      field.qt = 'search'
+      field.solr_parameters = {
+        qf:  '${qf_unitid}',
+        pf:  '${pf_unitid}'
+      }
+    end
 
     # "sort results by" select (pulldown)
     # label in pulldown is followed by the name of the SOLR field to sort by and
