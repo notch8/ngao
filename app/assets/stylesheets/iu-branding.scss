@@ -58,6 +58,13 @@ a:hover {
 .btn-primary:focus, .btn-primary.focus {
   background-color: $iu-mahogany;
 }
+
+// within collection search drop down
+// hides 'this collection' when not selectable
+#within_collection option:disabled {
+  display: none;
+}
+
 // facet colors
 .card {
   background-color: $iu-cream;
