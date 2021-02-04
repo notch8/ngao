@@ -334,6 +334,7 @@
    <copyField source="places_ssm" dest="place_tesim"/>
    <copyField source="names_ssim" dest="name_tesim"/>
    <copyField source="access_subjects_ssim" dest="subject_tesim"/>
+   <copyField source="unitid_ssm" dest="unitid_tesim"/>
 
    <!-- The catch all `text` field -->
    <!-- grab the fielded searches -->
