@@ -104,3 +104,22 @@ test:
     aeon_web_ead:
       request_url: 'https://sample.request.com'
       request_mappings: 'Action=10&Form=31&Value=ead_url'
+iusb:
+  campus: 'US-InU'
+  name: 'Wylie House Museum'
+  visit_note: ''
+  description: 'Wylie House Museum description here'
+  building: ''
+  address1: '15064 Avenida Montuosa'
+  address2: ''
+  city: 'San Diego'
+  state: 'CA'
+  zip: '92129'
+  country: 'USA'
+  phone: '(812) 855-2452'
+  contact_info: 'liblilly@indiana.edu'
+  thumbnail_url: 'https://libraries.indiana.edu/sites/default/files/iu_feature/Lilly%20Library.exteror.web_.jpg'
+  request_types:
+    aeon_web_ead:
+      request_url: 'https://sample.request.com'
+      request_mappings: 'Action=10&Form=31&Value=ead_url'

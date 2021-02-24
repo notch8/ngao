@@ -204,8 +204,20 @@ to_field 'digital_objects_ssm', extract_xpath('/ead/archdesc/did/dao|/ead/archde
   end
 end
 
-to_field 'extent_ssm', extract_xpath('/ead/archdesc/did/physdesc/extent')
-to_field 'extent_teim', extract_xpath('/ead/archdesc/did/physdesc/extent')
+to_field 'extent_ssm', extract_xpath('/ead/archdesc/did/physdesc', to_text: false) do |_record, accumulator|
+  accumulator.map! do |element|
+    extent_array = []
+    %w[extent].map do |selector|
+      extent = element.xpath(".//#{selector}").map(&:text)
+      first = extent.shift
+      others = '(' + extent.join(' ') + ')' unless extent.empty?
+      extent_array << first
+      extent_array << others
+    end.flatten
+    extent_array.join(' ')
+  end
+end
+
 to_field 'genreform_sim', extract_xpath('/ead/archdesc/controlaccess/genreform')
 to_field 'genreform_ssm', extract_xpath('/ead/archdesc/controlaccess/genreform')
 
@@ -496,7 +508,7 @@ compose 'components', ->(record, accumulator, _context) { accumulator.concat rec
   to_field 'acqinfo_ssim', extract_xpath('./acqinfo/*[local-name()!="head"]')
   to_field 'acqinfo_ssim', extract_xpath('./descgrp/acqinfo/*[local-name()!="head"]')
 
-  #to_field 'language_ssm', extract_xpath('./did/langmaterial')
+  # to_field 'language_ssm', extract_xpath('./did/langmaterial')
   to_field 'language_ssm' do |record, accumulator|
     record.xpath('./did/langmaterial').each do |node|
       accumulator << node.text

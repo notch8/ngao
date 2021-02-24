@@ -54,6 +54,10 @@
         <extent altrender="materialtype spaceoccupied">184 items</extent>
         <extent altrender="carrier">(1 box)</extent>
       </physdesc>
+      <physdesc altrender="whole">
+        <extent altrender="materialtype spaceoccupied">8.15 cubic feet</extent>
+        <extent altrender="carrier">One full-size records case, one letter-size documents case, twenty-six shelved books, and oversize material in flat storage.</extent>
+      </physdesc>
       <unitdate calendar="gregorian" era="ce" normal="1779/1784" type="inclusive"
         >1779-1784</unitdate>
       <abstract id="aspace_e53188a797f390d497dfe86fc19f5b0f">The Alströmer mss., 1779-1784 and 1865,
