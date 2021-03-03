@@ -218,6 +218,20 @@ to_field 'extent_ssm', extract_xpath('/ead/archdesc/did/physdesc', to_text: fals
   end
 end
 
+to_field 'extent_teim', extract_xpath('/ead/archdesc/did/physdesc', to_text: false) do |_record, accumulator|
+  accumulator.map! do |element|
+    extent_array = []
+    %w[extent].map do |selector|
+      extent = element.xpath(".//#{selector}").map(&:text)
+      first = extent.shift
+      others = '(' + extent.join(' ') + ')' unless extent.empty?
+      extent_array << first
+      extent_array << others
+    end.flatten
+    extent_array.join(' ')
+  end
+end
+
 to_field 'genreform_sim', extract_xpath('/ead/archdesc/controlaccess/genreform')
 to_field 'genreform_ssm', extract_xpath('/ead/archdesc/controlaccess/genreform')
 
@@ -410,8 +424,33 @@ compose 'components', ->(record, accumulator, _context) { accumulator.concat rec
     accumulator.concat context.clipboard[:parent].output_hash['normalized_title_ssm']
   end
 
-  to_field 'extent_ssm', extract_xpath('./did/physdesc/extent')
-  to_field 'extent_teim', extract_xpath('./did/physdesc/extent')
+  to_field 'extent_ssm', extract_xpath('./did/physdesc', to_text: false) do |_record, accumulator|
+    accumulator.map! do |element|
+      extent_array = []
+      %w[extent].map do |selector|
+        extent = element.xpath(".//#{selector}").map(&:text)
+        first = extent.shift
+        others = '(' + extent.join(' ') + ')' unless extent.empty?
+        extent_array << first
+        extent_array << others
+      end.flatten
+      extent_array.join(' ')
+    end
+  end
+
+  to_field 'extent_teim', extract_xpath('./did/physdesc', to_text: false) do |_record, accumulator|
+    accumulator.map! do |element|
+      extent_array = []
+      %w[extent].map do |selector|
+        extent = element.xpath(".//#{selector}").map(&:text)
+        first = extent.shift
+        others = '(' + extent.join(' ') + ')' unless extent.empty?
+        extent_array << first
+        extent_array << others
+      end.flatten
+      extent_array.join(' ')
+    end
+  end
 
   to_field 'creator_ssm', extract_xpath('./did/origination')
   to_field 'creator_ssim', extract_xpath('./did/origination')
