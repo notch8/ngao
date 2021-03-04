@@ -56,5 +56,9 @@ RSpec.describe 'EAD 2 traject indexing', type: :feature do
     it 'does not index child level components with level = collection' do
       expect(result['component_level_isim']).to be nil
     end
+
+    it 'indexes extents contained within a single physdesc as one string' do
+      expect(result['extent_ssm']).to eq ['184 items ((1 box))', '8.15 cubic feet (One full-size records case, one letter-size documents case, twenty-six shelved books, and oversize material in flat storage.)']
+    end
   end
 end
