@@ -52,6 +52,13 @@ a:hover {
 .search-btn {
   background-color: $iu-crimson;
 }
+
+// search help link
+.help-link {
+  width: 100%;
+  padding-top: .5rem;
+}
+
 .btn-primary:not(:disabled):not(.disabled):active,
 .btn-primary:not(:disabled):not(.disabled).active,
 .show > .btn-primary.dropdown-toggle,
