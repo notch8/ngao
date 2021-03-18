@@ -327,6 +327,15 @@ module ArclightHelper
     controller_name == 'catalog' && action_name == 'show'
   end
 
+  ##
+  # Get the counter for a document - used for grouped index views
+  #
+  # @param [Integer] idx document index
+  # @return [Integer]
+  def document_counter(idx)
+    idx + 1
+  end
+
   private
 
     def build_repository_link(document)

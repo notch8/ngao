@@ -1,0 +1,30 @@
+<%# COPIED FROM ARCLIGHT TO ADD NUMBERING TO SEARCH RESULTS %>
+<div class="documentHeader row">
+  <% counter = document_counter_with_offset(document_counter) %>
+  <div class="col-auto">
+    <%= blacklight_icon document_or_parent_icon(document) %>
+  </div>
+  <div class="col col-no-left-padding col-no-right-padding">
+    <div class="d-flex justify-content-between">
+      <h3 class="col col-no-left-padding">
+        <%# ADDED NUMBERING TO SEARCH RESULTS %>
+        <% if counter = document_counter_with_offset(document_counter) %>
+          <span class="document-counter">
+            <%= t('blacklight.search.documents.counter', counter: counter) %>
+          </span>
+        <% end %>
+        <%= link_to_document document, document_show_link_field(document), counter: document_counter %>
+      </h3>
+      <%= render_index_doc_actions document %>
+    </div>
+    <div class="row">
+      <%= content_tag('div', class: 'al-document-highlight col') do %>
+        <%= document.highlights.join('<br/>').html_safe %>
+      <% end if document.highlights %>
+    </div>
+    <div class='breadcrumb-links media'>
+      <span class="media-body" aria-hidden="true"><%= blacklight_icon :repository, classes: 'al-repository-content-icon' %></span>
+    <span class="col ml-2 pl-0" ><%= regular_compact_breadcrumbs(document) %></span>
+    </div>
+  </div>
+</div>
