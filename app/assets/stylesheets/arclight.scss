@@ -17,6 +17,100 @@ body {
   flex: 1 0 auto;
 }
 
+// home page campus cards
+.light-gray {
+  background: #eee;
+  padding-bottom: 1em;
+}
+.campus {
+  background-color: #fff;
+  margin: 1em;
+  border-radius: 1em;
+  padding: 0.5em;
+
+  .campus_header {
+    margin: 0.5em;
+  }
+
+  .campus_image {
+    height: auto;
+    display: inline-block;
+    max-width: 100%;
+  }
+
+  .campus_footer {
+    margin-top: 0.5em;
+  }
+
+  .campus_link {
+    margin-bottom: 0;
+  }
+
+  a.button {
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #990000;
+    background: none;
+    background-color: transparent;
+    text-decoration: none;
+  }
+
+  .button {
+    display: inline-block;
+    cursor: pointer;
+    -webkit-appearance: none;
+    border: 1px solid transparent;
+    border-width: 2px;
+    border-radius: 20px;
+    padding: .5625em 1em;
+    margin: 0 0 1rem;
+    font-size: 1rem;
+    background-color: #900;
+    color: #fff;
+    font-family: BentonSansBold,Helvetica,Arial,sans-serif;
+    font-weight: 400;
+    transition: background-color .2s ease-out,color .2s ease-out,border-color .18s ease-out;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+// update repositories styles
+h2.repository-header {
+  margin-left: 1em;
+}
+
+// scroll to top button
+.scrollToTop {
+  margin: 0;
+  position: fixed;
+  bottom: 8.5%;
+  right: 0;
+  z-index: 100;
+  display: none;
+  text-decoration: none;
+  color: #ffffff;
+  background-color: rgba(153, 0, 0, .7);
+  padding: 10px 20px 10px 10px;
+  font-size: 12px;
+}
+.scrollToTop:hover {
+  background-color: rgba(153, 0, 0, 1);
+  color: #ffffff;
+  text-decoration: none;
+}
+
 // Placeholder styling override
 .al-hierarchy-placeholder {
   margin-top: 0em;
