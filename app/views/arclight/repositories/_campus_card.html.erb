@@ -4,7 +4,7 @@
       <h3 class="campus-header"><%= convert_campus_id(campus) %></h3>
     </div>
     <div>
-      <%= image_tag(campus, class: 'campus_image', alt:"#{convert_campus_id(campus)}") %>
+      <%= image_tag(campus_image(campus), class: 'campus_image', alt:"#{convert_campus_id(campus)}") %>
     </div>
     <div class="text-center campus_footer">
       <a class="button campus_link" href="#<%= campus %>">
