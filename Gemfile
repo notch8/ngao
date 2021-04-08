@@ -78,7 +78,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'arclight'
 gem 'blacklight_range_limit', '~> 7.1'
 group :development, :test do
-  gem 'solr_wrapper', '3.1.1'
+  gem 'solr_wrapper', '3.1.2'
   gem 'nulldb'
 end
 
