@@ -1,0 +1,26 @@
+<%# COPIED FROM ARCLIGHT TO ADD NUMBERING TO SEARCH RESULTS %>
+<article class="document">
+  <% counter = document_counter(document_counter) %>
+  <% breadcrumbs = parents_to_links(document) %>
+  <div class="documentHeader row">
+    <div class="col-auto">
+      <%= blacklight_icon document_or_parent_icon(document) %>
+    </div>
+    <div class="col col-no-left-padding">
+      <h4>
+        <%# ADDED NUMBERING TO SEARCH RESULTS %>
+        <% if counter = document_counter(document_counter) %>
+          <span class="document-counter">
+            <%= t('blacklight.search.documents.counter', counter: counter) %>
+          </span>
+        <% end %>
+        <%= link_to_document document, document_show_link_field(document), counter: document_counter %>
+      </h4>
+      <div class='breadcrumb-links media'>
+        <% unless breadcrumbs.nil? %>
+          <span class="media-body" aria-hidden="true"><%= blacklight_icon :folder, classes: 'al-folder-icon' %></span>
+          <span class="col" ><%= parents_to_links(document) %></span>
+        <% end %>
+    </div>
+  </div>
+</article>
