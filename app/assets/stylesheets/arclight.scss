@@ -24,13 +24,14 @@ body {
 }
 .campus {
   background-color: #fff;
-  margin: 1em;
+  margin: 1em 0;
   border-radius: 1em;
   padding: 0.5em;
 
   .campus-header {
-    margin: 0.25rem;
+    margin: 0.1rem;
     min-height: 4rem;
+    font-size: 20px;
   }
 
   .campus_image {
