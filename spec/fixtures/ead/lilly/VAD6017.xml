@@ -177,6 +177,12 @@
           <physdesc altrender="whole"><extent altrender="materialtype spaceoccupied">184
               items</extent><extent altrender="carrier">(1 box)</extent></physdesc>
         </did>
+        <descgrp>
+          <acqinfo id="aspace_b6a2bbe27ee03701a27909d6c7bf0f0e">
+            <head>Acquisition Information</head>
+            <p>Child acqinfo</p>
+          </acqinfo>
+        </descgrp>
       </c01>
     </dsc>
   </archdesc>
