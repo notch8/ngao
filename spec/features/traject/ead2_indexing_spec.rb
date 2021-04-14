@@ -60,5 +60,11 @@ RSpec.describe 'EAD 2 traject indexing', type: :feature do
     it 'indexes extents contained within a single physdesc as one string' do
       expect(result['extent_ssm']).to eq ['184 items ((1 box))', '8.15 cubic feet (One full-size records case, one letter-size documents case, twenty-six shelved books, and oversize material in flat storage.)']
     end
+
+    it 'collection acqinfo does not show on child elements' do
+      expect(result['acqinfo_ssim']).to eq ['Purchase:  1982']
+      component = result['components'].find { |c| c['id'] == ['InU-Li-VAD6017aspace_VAD6017-00001'] }
+      expect(component['acqinfo_ssim']).to eq ['Child acqinfo']
+    end
   end
 end
