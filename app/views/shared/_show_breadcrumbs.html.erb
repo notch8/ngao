@@ -27,14 +27,14 @@
     </li>
     <% parents.each_with_index.map do |parent, index| %>
       <%= content_tag :li, class: "breadcrumb-item breadcrumb-item-#{index + 3} media" do %>
-        <span class="media-body" aria-hidden="true"><%= blacklight_icon document_or_parent_icon(parent) %></span>
+        <span class="media-body" aria-hidden="true"><%= blacklight_icon "arrow-return-right" %></span>
         <span class="col"><%= link_to parent.label, solr_document_path(parent.global_id) %></span>
       <% end %>
     <% end %>
   </ol>
 
   <%= content_tag :h1, class: "breadcrumb-item breadcrumb-item-#{parents.length + 4} media" do %>
-    <span class="media-body" aria-hidden="true"><%= blacklight_icon document_or_parent_icon(document) %></span>
+    <span class="media-body" aria-hidden="true"><%= blacklight_icon "arrow-return-right" %></span>
     <span class="col"><%= document.normalized_title %></span>
   <% end %>
 </nav>
