@@ -16,4 +16,8 @@ module CampusHelper
   def convert_campus_id(value)
     CAMPUSES[value] || 'Indiana University'
   end
+
+  def campus_image(campus)
+    "#{campus}.jpg"
+  end
 end
