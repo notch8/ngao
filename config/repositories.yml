@@ -418,14 +418,14 @@ iunw:
   contact_info: 'smcshane@iun.edu'
   thumbnail_url: 'https://webapp1.dlib.indiana.edu/archivesOnline/repositoryImages/iunw.jpg'
   repo_inst_url: 'https://cra.sitehost.iu.edu/index.shtml'
-peirce:  
+iat:  
   campus: 'US-iniu'
-  name: 'The Peirce Edition Project'
+  name: ' Institute for American Thought'
   visit_note: ''
   description: ''
   building: ''
-  address1: 'c/o Institute for American Thought'
-  address2: '902 West New York Street, ES 0010'
+  address1: '902 West New York Street'
+  address2: 'ES 0010'
   city: 'Indianapolis'
   state: 'Indiana'
   zip: '46202'
